@@ -17,7 +17,7 @@ func getInput() (toEncrypt bool, encoding string, message string) {
     reader := bufio.NewReader(os.Stdin)
 
     // Get operation (Encrypt or Decrypt)
-    fmt.Println("Select operation (1/2):\n1. Encrypt\n2. Decrypt")
+    fmt.Println("Select operation (1/2):\n1. Encrypt\n2. Decrypt\n")
     operation, _ := reader.ReadString('\n')
     operation = strings.TrimSpace(operation)
 
@@ -30,8 +30,8 @@ func getInput() (toEncrypt bool, encoding string, message string) {
         return getInput() // retry if invalid input
     }
 
-    // Get encoding (ROT13, Reverse, Custom)
-    fmt.Println("Select cypher (1/3):\n1. ROT13\n2. Reverse\n3. Custom")
+    // Get encoding (ROT13, Reverse, Caesar)
+    fmt.Println("Select cypher (1/3):\n1. ROT13\n2. Reverse\n3. Caesar\n")
     encoding, _ = reader.ReadString('\n')
     encoding = strings.TrimSpace(encoding)
 
@@ -135,7 +135,7 @@ func main() {
         } else {
             result = decrypt_reverse(message)
         }
-				case "3": // Caesar Cipher with shift 3
+		case "3": // Caesar Cipher with shift 3
         if toEncrypt {
             result = encrypt_caesar(message, 3)
         } else {
