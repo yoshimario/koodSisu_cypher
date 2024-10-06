@@ -41,10 +41,17 @@ func getInput() (toEncrypt bool, encoding string, message string) {
     }
 
     // Get message to encrypt/decrypt
-    fmt.Println("Enter the message:")
+    for {
+	fmt.Println("Enter the message:")
     message, _ = reader.ReadString('\n')
     message = strings.TrimSpace(message)
 
+	if message == "" {
+		fmt.Println ("The message could not be empty!")
+		continue
+	}
+	break
+	}
     return toEncrypt, encoding, message
 }
 
