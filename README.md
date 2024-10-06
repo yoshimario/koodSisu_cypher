@@ -71,13 +71,13 @@ Welcome to the Cypher Tool!
 
 Select operation (1/2):
 1. Encrypt
-2. Decrypt
+2. Decrypt  
 1
 
 Select cypher (1/3):
 1. ROT13
 2. Reverse Alphabet
-3. Caesar Cypher
+3. Caesar Cypher  
 1
 
 Enter the message:
