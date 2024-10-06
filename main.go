@@ -1,10 +1,10 @@
 package main
 
 import (
-    "bufio"
-    "fmt"
-    "os"
-    "strings"
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
 )
 
 // Greet the user
@@ -98,6 +98,24 @@ func reverseAlphabet(s string) string {
     return result
 }
 
+func encrypt_caesar(s string, shift int) string {
+	result := ""
+	for _, r := range s {
+			if r >= 'A' && r <= 'Z' {
+					result += string('A' + (r-'A'+rune(shift))%26)
+			} else if r >= 'a' && r <= 'z' {
+					result += string('a' + (r-'a'+rune(shift))%26)
+			} else {
+					result += string(r) // Keep non-alphabet characters unchanged
+			}
+	}
+	return result
+}
+
+func decrypt_caesar(s string, shift int) string {
+	return encrypt_caesar(s, 26-shift) // Shifting by 26-shift reverses the Caesar cipher
+}
+
 // Main logic, invoking other functions
 func main() {
     greetUser()
@@ -117,8 +135,12 @@ func main() {
         } else {
             result = decrypt_reverse(message)
         }
-    case "3": // Custom encryption (add logic here if needed)
-        fmt.Println("Custom encryption not implemented yet.")
+				case "3": // Caesar Cipher with shift 3
+        if toEncrypt {
+            result = encrypt_caesar(message, 3)
+        } else {
+            result = decrypt_caesar(message, 3)
+        }
     }
 
     fmt.Println("Result:", result)
