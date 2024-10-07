@@ -14,6 +14,32 @@ func greetUser() {
 
 // Get the input data required for the operation
 func getInput() (toEncrypt bool, encoding string, message string) {
+
+	if len(os.Args) >= 4 {
+        // Process command-line arguments if provided
+        operation := os.Args[1]
+        encoding = os.Args[2]
+        message = os.Args[3]
+
+        if operation == "1" {
+            toEncrypt = true
+        } else if operation == "2" {
+            toEncrypt = false
+        } else {
+            fmt.Println("Invalid operation. Use 1 for Encrypt, 2 for Decrypt.")
+            os.Exit(1)
+        }
+
+        if encoding != "1" && encoding != "2" && encoding != "3" {
+            fmt.Println("Invalid cipher. Use 1 for ROT13, 2 for Reverse, 3 for Caesar.")
+            os.Exit(1)
+        }
+
+        if strings.TrimSpace(message) == "" {
+            fmt.Println("Message cannot be empty.")
+            os.Exit(1)
+	}
+	}else {	
     reader := bufio.NewReader(os.Stdin)
 
     // Get operation (Encrypt or Decrypt)
@@ -52,7 +78,9 @@ func getInput() (toEncrypt bool, encoding string, message string) {
 	}
 	break
 	}
-    return toEncrypt, encoding, message
+    
+	}
+	return toEncrypt, encoding, message
 }
 
 // Encrypt the message with rot13
@@ -79,6 +107,7 @@ func rot13(s string) string {
     }
     return result
 }
+
 
 // Encrypt the message with reverse
 func encrypt_reverse(s string) string {

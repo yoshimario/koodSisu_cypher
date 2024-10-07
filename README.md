@@ -12,6 +12,18 @@ You can run the program using the following command:
 
 go run main.go
 
+### Running the Program with Command-Line Arguments
+
+You can also run the tool by providing arguments directly in the command line:  
+
+
+./cyphertool <operation> <cipher> <message>  
+
+Example of Encryption with Command-Line Arguments:  
+
+./cyphertool 1 1 hello   
+
+
 The program will guide you through the process step by step:
 
 2. Select an Operation
